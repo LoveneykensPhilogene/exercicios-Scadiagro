@@ -5,7 +5,7 @@
 </head>
 
 <body>
-Exercicos foram resolvidos durante o trainamento da Scadiagro.
+Exercicios foram resolvidos durante trainamento da Scadiagro.
 </body>
 
 </html>
