@@ -1,11 +1,11 @@
 <html>
 
 <head>
-<h1>Exercicios Scadiagro</h1>
+<h1>Exercícios Scadiagro</h1>
 </head>
 
 <body>
-Exercicios foram resolvidos durante trainamento da Scadiagro.
+Exercícios foram resolvidos durante trainamento da Scadiagro.
 </body>
 
 </html>
