@@ -4,7 +4,7 @@ public class CalculaInss {
 
     public static void main(String args[]) {
         double aliquotaDaFaixa1 = 7.5;
-        double  aliquotaDaFaixa2  = 9;
+        double aliquotaDaFaixa2 = 9;
         double aliqqotaDaFaixa3 = 12;
         double aliquotaDaFaixa4 = 14;
         double salario = 0.0;
@@ -31,5 +31,5 @@ public class CalculaInss {
         } catch (Exception e) {
             System.out.println(e);
         }
-   }
+    }
 }

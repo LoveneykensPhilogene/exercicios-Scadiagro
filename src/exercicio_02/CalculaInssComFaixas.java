@@ -1,5 +1,6 @@
 package exercicio_02;
 
+import java.text.DecimalFormat;
 import java.util.Scanner;
 
 public class CalculaInssComFaixas {
@@ -16,9 +17,10 @@ public class CalculaInssComFaixas {
         double inssDaFaixa2 = 0d;
         double inssDaFaixa3 = 0d;
         double inssDaFaixa4 = 0d;
+        double inssDaFaixa5 = 0d;
         double salario = 0d;
-
         double inssTotalDasFaixas = 0d;
+        DecimalFormat dFormatter = new DecimalFormat("#.00");
         Scanner s = new Scanner(System.in);
         try (s) {
             System.out.println(("Digite o salario do colaborador : "));
@@ -45,10 +47,16 @@ public class CalculaInssComFaixas {
                 inssTotalDasFaixas = inssDaFaixa1 + inssDaFaixa2 + inssDaFaixa3 + inssDaFaixa4;
 
             } else {
-                System.out.println("valor muito alto.");
+                inssDaFaixa1 = (salarioMaximumDaFaixa1 * aliquotaDaFaixa1) / 100;
+                inssDaFaixa2 = ((salarioMaximumDaFaixa2 - salarioMaximumDaFaixa1) * aliquotaDaFaixa2) / 100;
+                inssDaFaixa3 = ((salarioMaximumDaFaixa3 - 2203.49) * aliqqotaDaFaixa3) / 100;
+                inssDaFaixa4 = ((salarioMaximumDaFaixa4 - 3305.24) * aliquotaDaFaixa4) / 100;
+                inssDaFaixa5 = (salarioMaximumDaFaixa4 * aliquotaDaFaixa4) / 100;
+                inssTotalDasFaixas = inssDaFaixa1 + inssDaFaixa2 + inssDaFaixa3 + inssDaFaixa4 + inssDaFaixa5;
+
             }
             if (inssTotalDasFaixas != 0) {
-                System.out.println("INSS do colaborador : R$" + inssTotalDasFaixas + " de INSS.");
+                System.out.println("INSS do colaborador : R$" + dFormatter.format(inssTotalDasFaixas) + " de INSS.");
             }
 
 
