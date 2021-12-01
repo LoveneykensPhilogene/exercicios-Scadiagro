@@ -43,22 +43,16 @@ public class Emprestimo {
                             BigDecimal restoDoValorDoEmprestimo = new BigDecimal(valorDoEmprestimo).subtract(somaDasParcelas);
                             valorDeCadaParcela = valorDeCadaParcela.add(restoDoValorDoEmprestimo);
 
-                        } else {
-                            valorDeCadaParcela = valorDeCadaParcela;
+                        } else if ((indiceDasParcelas == numeroDasParcelas) && (somaDasParcelas.doubleValue() > valorDoEmprestimo)){
+                            BigDecimal valorAMaisDasomaDasParcelas = somaDasParcelas.subtract(new BigDecimal(valorDoEmprestimo));
+                            valorDeCadaParcela = valorDeCadaParcela.subtract(valorAMaisDasomaDasParcelas);
 
+                        }else {
+                            valorDeCadaParcela = valorDeCadaParcela;
                         }
 
                         valorTotalDasParcelas = valorTotalDasParcelas.add(valorDeCadaParcela);
                         System.out.println("Parcela 0" + indiceDasParcelas + ": " + "R$" + valorDeCadaParcela);
-
-                    }
-
-                    if (valorDoEmprestimo < valorTotalDasParcelas.doubleValue()) {
-                        BigDecimal valorAMaisDsomaDasParcelas = valorTotalDasParcelas.subtract(new BigDecimal(valorDoEmprestimo));
-                        valorTotalDasParcelas = valorTotalDasParcelas.subtract(valorAMaisDsomaDasParcelas);
-
-                    } else {
-                        valorTotalDasParcelas = valorTotalDasParcelas;
 
                     }
 
