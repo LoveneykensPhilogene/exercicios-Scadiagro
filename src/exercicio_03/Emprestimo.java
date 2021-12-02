@@ -43,11 +43,11 @@ public class Emprestimo {
                             BigDecimal restoDoValorDoEmprestimo = new BigDecimal(valorDoEmprestimo).subtract(somaDasParcelas);
                             valorDeCadaParcela = valorDeCadaParcela.add(restoDoValorDoEmprestimo);
 
-                        } else if ((indiceDasParcelas == numeroDasParcelas) && (somaDasParcelas.doubleValue() > valorDoEmprestimo)){
+                        } else if ((indiceDasParcelas == numeroDasParcelas) && (somaDasParcelas.doubleValue() > valorDoEmprestimo)) {
                             BigDecimal valorAMaisDasomaDasParcelas = somaDasParcelas.subtract(new BigDecimal(valorDoEmprestimo));
                             valorDeCadaParcela = valorDeCadaParcela.subtract(valorAMaisDasomaDasParcelas);
 
-                        }else {
+                        } else {
                             valorDeCadaParcela = valorDeCadaParcela;
                         }
 
