@@ -1,8 +1,5 @@
 package exercicio_04;
 
-import java.io.BufferedReader;
-import java.io.InputStreamReader;
-
 public class LerPalavras {
     public static void main(String[] args) {
         int quantidadeDeCarateres = 0;
@@ -11,46 +8,48 @@ public class LerPalavras {
         String conjuntoDepalavras = "";
         String textoInversa = "";
         String ordemInversaDasPalavras = "";
-        String texto = "";
+        String buscaPalavra="";
+        String texto1 = "É nas manhãs silenciosas " +
+                "Quando não tem ninguém perto que ele mostra o que ele é " +
+                "Faz nascer do zero, as mais belas criações " +
+                "Ele corre os riscos " +
+                "Em cada curva tem um pouco dele " +
+                "Lapidando cada traço ele eleva a arte, as linhas se encaixam, rimam, ele ilustra a vida, ele também é poeta. " +
+                "E por apreço poético, ele que desenha os seus poemas, agora está desenhado em palavras, porque poeta também pode ser poesia.";
 
-        try (BufferedReader br = new BufferedReader(new InputStreamReader(System.in))) {
+        String palavras[] = texto1.replace(",", "").replace(".", "").split(" ");
 
-            System.out.println("Digita o texto :");
+        for (String palavra : palavras) {
+            conjuntoDepalavras += palavra;
+            System.out.println(palavra);
+            quantidadeDePalavras++;
 
-            texto = br.readLine();
-
-            String palavras[] = texto.split(" ");
-
-            for (String palavra : palavras) {
-                conjuntoDepalavras += palavra;
-                System.out.println(palavra);
-                quantidadeDePalavras++;
-            }
-            for (int indiceDePalavras = 0; indiceDePalavras < palavras.length; indiceDePalavras++) {
-
-                System.out.println("palavra é : " + " numero de vezes : " + numeroDevezes);
-            }
-
-            for (int indiceTexto = texto.length() - 1; indiceTexto >= 0; indiceTexto--) {
-                textoInversa = textoInversa + Character.toString(texto.charAt(indiceTexto));
-
-            }
-
-            for (int indiceDePalavras = palavras.length - 1; indiceDePalavras >= 0; indiceDePalavras--) {
-
-                ordemInversaDasPalavras += " " + palavras[indiceDePalavras];
-
-            }
-            quantidadeDeCarateres = conjuntoDepalavras.length();
-
-            System.out.println("A quantidade de carateres  : " + quantidadeDeCarateres +
-                    "\n" + "A quantidade de palavras : " + quantidadeDePalavras);
-
-            System.out.println("Texto na ordem inverse :" + textoInversa + "\n" + "Ordem inversa palavra por palavra :" + ordemInversaDasPalavras);
-
-        } catch (Exception e) {
-            System.out.println(e.getStackTrace());
         }
+
+        for (int indiceDeCadaPalavras = 0; indiceDeCadaPalavras < palavras.length; indiceDeCadaPalavras++) {
+
+            System.out.println("Palavre :----"+"t[1][1]"+ " ---"+"numero de vezes :--- "+numeroDevezes);
+        }
+        //System.out.println("Palavra :----"+ " ---"+"numero de vezes :--- "+numeroDevezes);
+
+        for (int indiceTexto = texto1.length() - 1; indiceTexto >= 0; indiceTexto--) {
+            textoInversa = textoInversa + Character.toString(texto1.charAt(indiceTexto));
+
+        }
+
+        for (int indiceDePalavras = palavras.length - 1; indiceDePalavras >= 0; indiceDePalavras--) {
+
+            ordemInversaDasPalavras += " " + palavras[indiceDePalavras];
+
+        }
+        quantidadeDeCarateres = conjuntoDepalavras.length();
+
+        System.out.println("A quantidade de carateres  : " + quantidadeDeCarateres +
+                "\n" + "A quantidade de palavras : " + quantidadeDePalavras);
+
+
+        System.out.println("Texto na ordem inverse :" + textoInversa + "\n" + "Ordem inversa palavra por palavra :" + ordemInversaDasPalavras);
+
     }
 }
 
