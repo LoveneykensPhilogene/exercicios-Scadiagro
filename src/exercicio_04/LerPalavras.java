@@ -42,19 +42,18 @@ public class LerPalavras {
         }
         quantidadeDeCarateres = conjuntoDepalavras.length();
 
-        System.out.println("A quantidade de carateres  : " + quantidadeDeCarateres +
-                "\n" + "A quantidade de palavras : " + quantidadeDePalavras);
+        System.out.println("\n A quantidade de carateres  : " + quantidadeDeCarateres +
+                "\n" + " A quantidade de palavras : " + quantidadeDePalavras + "\n");
 
-        for (int posicaoDeCadaPalavra = 0; posicaoDeCadaPalavra < listaDePalavra.size(); posicaoDeCadaPalavra++) {
-            SortedMap<String, Integer> valoresRepetidos = new TreeMap<>();
+        SortedMap<String, Integer> valoresRepetidos = new TreeMap<>();
 
-            listaDePalavra.forEach(buscaPalavra -> valoresRepetidos.compute(buscaPalavra, (palavraEncontrada, numeroDeVezes) -> (numeroDeVezes == null) ? 1 : numeroDeVezes + 1));
-            valoresRepetidos.entrySet().forEach(palavrasRepetidas -> {
-                System.out.println("palavra encontrada : " + palavrasRepetidas.getKey() + "\t" + " : " + palavrasRepetidas.getValue());
-            });
-        }
+        listaDePalavra.forEach(buscaPalavra -> valoresRepetidos.compute(buscaPalavra, (palavraEncontrada, numeroDeVezes) -> (numeroDeVezes == null) ? 1 : numeroDeVezes + 1));
+        valoresRepetidos.entrySet().forEach(palavrasRepetidas -> {
+            System.out.println("palavra encontrada : " + palavrasRepetidas.getKey() + "\t" + " : " + palavrasRepetidas.getValue());
+        });
 
-        System.out.println("Texto na ordem inverse :" + textoInversa + "\n" + "Ordem inversa palavra por palavra :" + ordemInversaDasPalavras);
+
+        System.out.println("\n Texto na ordem inverse :" + textoInversa + "\n" + " Ordem inversa palavra por palavra :" + ordemInversaDasPalavras);
 
     }
 }
