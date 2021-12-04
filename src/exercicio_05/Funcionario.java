@@ -52,11 +52,12 @@ public class Funcionario {
 
     @Override
     public String toString() {
-        return "Funcionario{" +
-                "cod_funcionario=" + cod_funcionario +
-                ", nome='" + nome + '\'' +
-                ", valorSalario='" + valorSalario + '\'' +
-                ", dataAdmissao=" + dataAdmissao +
-                '}';
+        return "\n====Funcionario ====\n" +
+                "cod_funcionario : " + cod_funcionario + "\n" +
+                "nome : " + nome + "\n" +
+                "valorSalario : R$" + valorSalario + "\n" +
+                "dataAdmissao : " + dataAdmissao + "\n"+
+                "Tempo na empresa : "+LocalDate.now().getMonth().compareTo(dataAdmissao.getMonth())+"\t Mês(es)";
+
     }
 }
