@@ -1,17 +1,18 @@
 package exercicio_05;
 
+import java.math.BigDecimal;
 import java.time.LocalDate;
 
 public class Funcionario {
     private int cod_funcionario;
     private String nome;
-    private String valorSalario;
+    private BigDecimal valorSalario;
     private LocalDate dataAdmissao;
 
     public Funcionario() {
     }
 
-    public Funcionario(int cod_funcionario, String nome, String valorSalario, LocalDate dataAdmissao) {
+    public Funcionario(int cod_funcionario, String nome, BigDecimal valorSalario, LocalDate dataAdmissao) {
         this.cod_funcionario = cod_funcionario;
         this.nome = nome;
         this.valorSalario = valorSalario;
@@ -42,11 +43,11 @@ public class Funcionario {
         this.dataAdmissao = dataAdmissao;
     }
 
-    public String getValorSalario() {
+    public BigDecimal getValorSalario() {
         return valorSalario;
     }
 
-    public void setValorSalario(String valorSalario) {
+    public void setValorSalario(BigDecimal valorSalario) {
         this.valorSalario = valorSalario;
     }
 

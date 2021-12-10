@@ -22,10 +22,10 @@ public class MostrarDados {
         BigDecimal somaDetodosSalarios = new BigDecimal(0d);
         BigDecimal mediaDosSalario = new BigDecimal(0d);
 
-        todosOsFuncionarios.add(new Funcionario(12, "Jose", "1500", LocalDate.parse("02/09/21", DateTimeFormatter.ofPattern("dd/MM/yy"))));
-        todosOsFuncionarios.add(new Funcionario(13, "Analdo", "6000", LocalDate.parse("20/10/21", DateTimeFormatter.ofPattern("dd/MM/yy"))));
-        todosOsFuncionarios.add(new Funcionario(14, "Joe", "2500", LocalDate.parse("20/01/21", DateTimeFormatter.ofPattern("dd/MM/yy"))));
-        todosOsFuncionarios.add(new Funcionario(1, "Joseph", "20000", LocalDate.parse("03/12/21", DateTimeFormatter.ofPattern("dd/MM/yy"))));
+        todosOsFuncionarios.add(new Funcionario(12, "Jose", new BigDecimal(1500), LocalDate.parse("02/09/21", DateTimeFormatter.ofPattern("dd/MM/yy"))));
+        todosOsFuncionarios.add(new Funcionario(13, "Analdo", new BigDecimal(6000), LocalDate.parse("20/10/21", DateTimeFormatter.ofPattern("dd/MM/yy"))));
+        todosOsFuncionarios.add(new Funcionario(14, "Joe", new BigDecimal(2500), LocalDate.parse("20/01/21", DateTimeFormatter.ofPattern("dd/MM/yy"))));
+        todosOsFuncionarios.add(new Funcionario(1, "Joseph", new BigDecimal(20000), LocalDate.parse("03/12/21", DateTimeFormatter.ofPattern("dd/MM/yy"))));
         Funcionario funcionario = new Funcionario();
 
         try (s) {
@@ -53,7 +53,7 @@ public class MostrarDados {
 
 
                     for (Funcionario funcionarioDeTodos : todosOsFuncionarios) {
-                        valorConvertido = Double.parseDouble(funcionarioDeTodos.getValorSalario());
+                        valorConvertido = funcionarioDeTodos.getValorSalario().doubleValue();
                         todosSalarios.add(BigDecimal.valueOf(valorConvertido).setScale(2, RoundingMode.DOWN));
 
                         System.out.println(funcionarioDeTodos + "\n");
