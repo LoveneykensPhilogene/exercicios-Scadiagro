@@ -50,17 +50,20 @@ public class ListaEncadeada {
 
     }
 
-    public void ordenarPeloCodigoDoElemento() {
+    public void ordenarPeloCodigoDoElemento(ListaEncadeada listaDosElemento) {
+
 
     }
 
     public void ordenarPeloNomeDoElemento() {
+
+
     }
+
 
     public void listaDosElementos() {
         Elemento elemento = this.inicio;
         while (elemento != null) {
-            this.tamanho++;
 
             System.out.println(elemento.getFuncionario());
             elemento = elemento.getProximaPosicao();
