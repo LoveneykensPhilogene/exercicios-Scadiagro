@@ -18,6 +18,9 @@ public class Funcionario {
         this.valorSalario = valorSalario;
         this.dataAdmissao = dataAdmissao;
     }
+    public Funcionario(int cod_funcionario){
+        this.cod_funcionario=cod_funcionario;
+    }
 
     public int getCod_funcionario() {
         return cod_funcionario;
