@@ -29,24 +29,25 @@ public class MostrarDados {
         Funcionario funcionario = new Funcionario();
 
         try (s) {
+
             while (todosOsFuncionarios.size() != 0) {
+
                 System.out.println("Informe o codigo do funcionario : \n");
                 int codigo = Integer.parseInt(s.nextLine());
 
                 if (codigo != 0) {
-                    for (Funcionario funcionarioDaLista : todosOsFuncionarios) {
-                        if (funcionarioDaLista.getCod_funcionario() == codigo) {
-                            funcionario = funcionarioDaLista;
-                        } else if ((codigo != 0) && (funcionarioDaLista.getCod_funcionario() != codigo)) {
 
-                            funcionario = new Funcionario();
-                            funcionario.setDataAdmissao(LocalDate.now());
 
-                        } else {
-
+                    List<Funcionario> listaDeBuscar = todosOsFuncionarios.stream().map(funcionario1 -> funcionario1).filter(funcionario1 -> funcionario1.getCod_funcionario() == codigo).toList();
+                    if (listaDeBuscar.size() != 0) {
+                        for (Funcionario funcionariosDaLista : listaDeBuscar) {
+                            funcionario = funcionariosDaLista;
+                            System.out.println(funcionario + "\n");
                         }
+                    } else {
+                        funcionario = new Funcionario(codigo);
+                        System.out.println("Não existe funcionario com esse nome : " + codigo + "\n");
                     }
-                    System.out.println(funcionario);
 
                 } else {
                     System.out.println("====Lista dos funcionarios====\n");
