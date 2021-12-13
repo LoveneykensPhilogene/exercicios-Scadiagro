@@ -9,6 +9,7 @@ import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.List;
 
 public class PersistenciaDeDados {
@@ -21,23 +22,19 @@ public class PersistenciaDeDados {
     public PersistenciaDeDados() {
     }
 
-    public ListaEncadeada getDados() {
-        return dados;
-    }
-
-    public void setDados(ListaEncadeada dados) {
-        this.dados = dados;
-    }
+    private Exception exception;
 
     private List<Funcionario> listaFuncionarios = new ArrayList<Funcionario>();
+    private List<Funcionario> listaPorNome = new ArrayList<>();
+    private List<Funcionario> listaPorCodigo = new ArrayList<>();
     private final String arquivoFuncionario = "Funcionario.dat";
-    private final String arquivoOrdenadoPorNome = "funcionario_idx01.idx";
+    private final String arquivoOrdenadoPorNome = "funcionario_idx02.idx";
     private final String arquivoOrdenadoPorCodigo = "funcionario_idx01.idx";
 
     public void gravarDadosDosFuncionarios(ListaEncadeada dadosDosFuncionarios) {
+
         try (BufferedWriter bufferFuncionario = new BufferedWriter(new FileWriter(arquivoFuncionario))) {
             Elemento elemento = dadosDosFuncionarios.getInicio();
-
 
             bufferFuncionario.write("Código" + formatarNomeDoFuncionario("Nome", 100) + "Salario         " + "Data");
 
@@ -63,16 +60,67 @@ public class PersistenciaDeDados {
 
     }
 
-    public void gravarDadosOrdenadosPorCodigo() {
-        try (BufferedWriter bufferCodido = new BufferedWriter(new FileWriter(arquivoOrdenadoPorCodigo))) {
+    public void gravarDadosOrdenadosPorCodigo(ListaEncadeada dadosDosFuncionarios) {
+        try (BufferedWriter bufferFuncionario = new BufferedWriter(new FileWriter(arquivoOrdenadoPorCodigo))) {
+            Elemento elemento = dadosDosFuncionarios.getInicio();
+
+            bufferFuncionario.write("Código" + formatarNomeDoFuncionario("Nome", 100) + "Salario         " + "Data");
+
+            bufferFuncionario.newLine();
+
+            while (elemento != null) {
+
+                listaPorCodigo.add(new Funcionario(elemento.getFuncionario().getCod_funcionario(), elemento.getFuncionario().getNome(), elemento.getFuncionario().getValorSalario(), elemento.getFuncionario().getDataAdmissao()));
+
+                elemento = elemento.getProximaPosicao();
+            }
+            listaPorCodigo.sort(Comparator.comparingInt(Funcionario::getCod_funcionario));
+            for (Funcionario funcionario : listaPorCodigo) {
+                String codigo = formatarCodigoDoFuncionario(funcionario.getCod_funcionario(), 6);
+                String nome = formatarNomeDoFuncionario(funcionario.getNome(), 100);
+                String salario = formatarSalario(funcionario.getValorSalario().toString(), 13);
+                LocalDate data = funcionario.getDataAdmissao();
+                bufferFuncionario.write(codigo + nome + salario + data);
+                bufferFuncionario.newLine();
+
+            }
+
+            bufferFuncionario.close();
 
         } catch (Exception e) {
             System.out.println(e);
         }
     }
 
-    public void gravarDadosOrdenadosPorNome() {
-        try (BufferedWriter bufferNome = new BufferedWriter(new FileWriter(arquivoOrdenadoPorCodigo))) {
+    public void gravarDadosOrdenadosPorNome(ListaEncadeada dadosDosFuncionarios) {
+        try (BufferedWriter bufferFuncionario = new BufferedWriter(new FileWriter(arquivoOrdenadoPorNome))) {
+            Elemento elemento = dadosDosFuncionarios.getInicio();
+
+
+            bufferFuncionario.write("Código" + formatarNomeDoFuncionario("Nome", 100) + "Salario         " + "Data");
+
+            bufferFuncionario.newLine();
+
+            while (elemento != null) {
+                listaPorNome.add(new Funcionario(elemento.getFuncionario().getCod_funcionario(), elemento.getFuncionario().getNome(), elemento.getFuncionario().getValorSalario(), elemento.getFuncionario().getDataAdmissao()));
+
+                elemento = elemento.getProximaPosicao();
+
+            }
+
+            listaPorNome.sort(Comparator.comparing(funcionario -> funcionario.getNome()));
+
+            for (Funcionario funcionario : listaPorNome) {
+                String codigo = formatarCodigoDoFuncionario(funcionario.getCod_funcionario(), 6);
+                String nome = formatarNomeDoFuncionario(funcionario.getNome(), 100);
+                String salario = formatarSalario(funcionario.getValorSalario().toString(), 13);
+                LocalDate data = funcionario.getDataAdmissao();
+                bufferFuncionario.write(codigo + nome + salario + data);
+                bufferFuncionario.newLine();
+
+            }
+
+            bufferFuncionario.close();
 
         } catch (Exception e) {
             System.out.println(e);
@@ -80,10 +128,10 @@ public class PersistenciaDeDados {
     }
 
     public void lerDadosDosFuncionarios() {
-        // limpa a lista de funcionarios
+
         listaFuncionarios = new ArrayList<Funcionario>();
+        String codigo = "";
         try (BufferedReader readerFuncionario = new BufferedReader(new InputStreamReader(new FileInputStream(arquivoFuncionario)))) {
-            String codigo = "";
             String nome = "";
             String salario = "";
             String date = "";
@@ -91,18 +139,21 @@ public class PersistenciaDeDados {
             String line = readerFuncionario.readLine();
 
             while (line != null) {
-                // descartando o cabeçalho
+
                 if (!line.substring(0, 6).equalsIgnoreCase("código")) {
-                    Funcionario funcionario = new Funcionario();
+
                     codigo = line.substring(0, 6);
                     nome = line.substring(6, 100).replace(" ", "");
                     salario = line.substring(106, 122);
                     date = line.substring(122, line.length());
-                    // aqui insere o funcionario da linha do arquivo em uma lista de funcionários
                     listaFuncionarios.add(new Funcionario(Integer.parseInt(codigo), nome, new BigDecimal(salario), LocalDate.parse(date)));
 
                 }
                 line = readerFuncionario.readLine();
+            }
+            System.out.println("\n=== Lista sem indexação ===\n");
+            for (Funcionario funcionario : listaFuncionarios) {
+                System.out.println(funcionario);
             }
             readerFuncionario.close();
         } catch (Exception e) {
@@ -110,8 +161,100 @@ public class PersistenciaDeDados {
         }
     }
 
+    public void lerDadosIndexadosPorCodigo() {
+        int codigo = 0;
+        String nome = "";
+        String salario = "";
+        String data = "";
+        listaPorCodigo = new ArrayList<>();
+        try (BufferedReader readerPorNome = new BufferedReader(new InputStreamReader(new FileInputStream(arquivoOrdenadoPorCodigo)))) {
+            String line = readerPorNome.readLine();
+            while (line != null) {
+
+                if (!line.substring(0, 6).equalsIgnoreCase("código")) {
+                    codigo = Integer.parseInt(line.substring(0, 6));
+                    nome = line.substring(6, 100).replace(" ", "");
+                    salario = line.substring(106, 122);
+                    data = line.substring(122, line.length());
+                    listaPorCodigo.add(new Funcionario(codigo, nome, new BigDecimal(salario), LocalDate.parse(data)));
+
+                }
+
+                line = readerPorNome.readLine();
+
+            }
+            System.out.println("\n=== Lista indexada pelo código do funcionário ===\n");
+            for (Funcionario funcionario : listaPorCodigo) {
+                System.out.println(funcionario);
+            }
+            readerPorNome.close();
+
+        } catch (
+                Exception e) {
+            System.out.println(e);
+        }
+
+    }
+
+    public void lerDadosIndexadosPorNome() {
+        int codigo = 0;
+        String nome = "";
+        String salario = "";
+        String data = "";
+        listaPorNome = new ArrayList<>();
+        try (BufferedReader readerPorNome = new BufferedReader(new InputStreamReader(new FileInputStream(arquivoOrdenadoPorNome)))) {
+            String line = readerPorNome.readLine();
+            while (line != null) {
+
+                if (!line.substring(0, 6).equalsIgnoreCase("código")) {
+                    codigo = Integer.parseInt(line.substring(0, 6));
+                    nome = line.substring(6, 100).replace(" ", "");
+                    salario = line.substring(106, 122);
+                    data = line.substring(122, line.length());
+                    listaPorNome.add(new Funcionario(codigo, nome, new BigDecimal(salario), LocalDate.parse(data)));
+
+                }
+
+                line = readerPorNome.readLine();
+
+            }
+
+            System.out.println("=== Lista indexada pelo nome ===\n");
+            for(Funcionario funcionario:listaPorNome){
+                System.out.println(funcionario);
+            }
+
+            readerPorNome.close();
+
+        } catch (
+                Exception e) {
+            System.out.println(e);
+        }
+
+    }
+
+    public ListaEncadeada getDados() {
+        return dados;
+    }
+
+    public void setDados(ListaEncadeada dados) {
+        this.dados = dados;
+    }
+
     public List<Funcionario> getListaFuncionarios() {
         return listaFuncionarios;
+    }
+
+    public List<Funcionario> getListaPorNome() {
+        return listaPorNome;
+    }
+
+    public Exception getException() {
+        return exception;
+    }
+
+    public void setException(Exception exception) {
+        this.exception = exception;
     }
 
     public String formatarCodigoDoFuncionario(int codigo, int tamahoDoCodigo) {
