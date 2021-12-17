@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<AnchorPane fx:id="cadastro" minHeight="300.0" minWidth="400.0" prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: white;" styleClass="container" xmlns="http://javafx.com/javafx/11.0.2" xmlns:fx="http://javafx.com/fxml/1" fx:controller="br.scadiagro.cadastro.controllers.cltrCadasFuncionario">
+   <children>
+      <Pane layoutX="74.0" layoutY="19.0" opacity="0.76" prefHeight="347.0" prefWidth="450.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <children>
+            <VBox layoutX="87.0" layoutY="66.0" prefHeight="200.0" prefWidth="455.0" style="-fx-border-color: black;">
+               <children>
+                  <Label fx:id="sLblNome" text="Nome" />
+                  <TextField fx:id="sTxtNome" minWidth="-Infinity" />
+                  <Label fx:id="slblSalario" layoutX="10.0" layoutY="10.0" text="Salário">
+                     <VBox.margin>
+                        <Insets top="10.0" />
+                     </VBox.margin></Label>
+                  <TextField fx:id="nTxtSalario" alignment="CENTER" layoutX="10.0" layoutY="27.0" maxWidth="-Infinity" prefHeight="20.0" prefWidth="100.0" />
+                  <Label fx:id="sLblData" text="Data">
+                     <VBox.margin>
+                        <Insets top="10.0" />
+                     </VBox.margin></Label>
+                  <DatePicker fx:id="dData" />
+                  <HBox prefHeight="100.0" prefWidth="200.0" style="-fx-spacing: space-between;" styleClass="HBoxButton">
+                     <children>
+                        <Button fx:id="btnCadastra" contentDisplay="CENTER" mnemonicParsing="false" text="Cadastrar">
+                           <HBox.margin>
+                              <Insets right="10.0" />
+                           </HBox.margin>
+                        </Button>
+                        <Button fx:id="btnFechar" contentDisplay="CENTER" mnemonicParsing="false" nodeOrientation="LEFT_TO_RIGHT" style="-fx-content-display: flex;" text="Fechar">
+                           <HBox.margin>
+                              <Insets left="10.0" />
+                           </HBox.margin>
+                        </Button>
+                     </children>
+                     <VBox.margin>
+                        <Insets top="10.0" />
+                     </VBox.margin>
+                  </HBox>
+               </children>
+               <padding>
+                  <Insets left="50.0" />
+               </padding>
+            </VBox>
+            <Label contentDisplay="CENTER" layoutX="171.0" layoutY="14.0" text="Cadastro de Funcionário" textAlignment="JUSTIFY" textOverrun="CENTER_ELLIPSIS">
+               <font>
+                  <Font size="24.0" />
+               </font>
+            </Label>
+         </children>
+      </Pane>
+   </children>
+</AnchorPane>

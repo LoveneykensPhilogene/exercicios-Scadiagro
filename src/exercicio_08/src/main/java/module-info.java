@@ -12,4 +12,7 @@ module br.scadiagro.cadastro {
 
     opens br.scadiagro.cadastro to javafx.fxml;
     exports br.scadiagro.cadastro;
+    exports br.scadiagro.cadastro.controllers;
+
+
 }
