@@ -6,11 +6,11 @@ import java.util.List;
 
 public interface IFuncionario {
 
-    public void CadastrarFuncionario(Funcionario oFuncionario) throws Exception;
+    public void CadastrarFuncionario(List<Funcionario> oFuncionario) throws Exception;
 
     public Funcionario BuscarUmFuncionarioPorCodigo(Long nCodigo);
 
-    public List<Funcionario> BuscarTodosOsFuncionarios();
+    public List<Funcionario> BuscarTodosOsFuncionarios(String sPath,String SFile) throws Exception;
 
     public Funcionario BuscarFuncionarioCOmMenorSalario(String sTipo);
 

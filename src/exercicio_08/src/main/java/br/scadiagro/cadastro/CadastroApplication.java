@@ -8,17 +8,26 @@ import javafx.stage.Stage;
 
 import java.io.IOException;
 
-public class CadastroApplication extends Application {
+
+
+public class CadastroApplication  extends Application {
+    public Stage stage;
+    public Scene scene;
+
     @Override
-    public void start(Stage stage) throws IOException {
-        Parent root = FXMLLoader.load(getClass().getResource("view/dsCadasFuncionario.fxml"));
-        stage.setScene(new Scene(root));
-        stage.setTitle("Tela de cadastro");
+    public void start(Stage primaryStage) throws Exception {
+        stage=primaryStage;
 
-        stage.show();
+            Parent root = FXMLLoader.load(getClass().getResource("view/dsCadasFuncionario.fxml"));
+            scene=new Scene(root);
+            stage.setScene(scene);
+            stage.setTitle("Tela de cadastro");
+
+            stage.show();
+
     }
-
     public static void main(String[] args) {
+
         launch();
     }
 }

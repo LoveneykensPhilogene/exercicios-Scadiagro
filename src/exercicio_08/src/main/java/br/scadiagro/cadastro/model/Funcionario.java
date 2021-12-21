@@ -5,15 +5,16 @@ import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.util.Objects;
 
-public class Funcionario  implements Serializable {
-    private static final long serialversionUID=1l;
+public class Funcionario implements Serializable {
+    private static final long serialversionUID = 1l;
 
     private Long nCodFuncionario;
     private String sNome;
     private BigDecimal nSalario;
     private LocalDate dData;
 
-    public Funcionario(){}
+    public Funcionario() {
+    }
 
     public Funcionario(Long nCodFuncionario, String sNome, BigDecimal nSalario, LocalDate dData) {
         this.nCodFuncionario = nCodFuncionario;
@@ -26,8 +27,7 @@ public class Funcionario  implements Serializable {
         return nCodFuncionario;
     }
 
-    public void setnCodFuncionario(String s,Long nCodFuncionario) {
-        setnCodFuncionario("",nCodFuncionario);
+    public void setnCodFuncionario(Long nCodFuncionario) {
         this.nCodFuncionario = nCodFuncionario;
     }
 
@@ -67,4 +67,15 @@ public class Funcionario  implements Serializable {
     public int hashCode() {
         return Objects.hash(nCodFuncionario);
     }
+
+    @Override
+    public String toString() {
+        return "Funcionario{" +
+                "nCodFuncionario=" + nCodFuncionario +
+                ", sNome='" + sNome + '\'' +
+                ", nSalario=" + nSalario +
+                ", dData=" + dData +
+                '}';
+    }
 }
+
