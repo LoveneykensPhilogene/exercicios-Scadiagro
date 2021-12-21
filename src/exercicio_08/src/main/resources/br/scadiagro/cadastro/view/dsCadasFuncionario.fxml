@@ -2,49 +2,107 @@
 
 <?import javafx.geometry.*?>
 <?import javafx.scene.control.*?>
+<?import javafx.scene.Cursor?>
 <?import javafx.scene.layout.*?>
-<?import javafx.scene.text.Font?>
-<AnchorPane fx:id="cadastro" minHeight="300.0" minWidth="400.0" prefHeight="400.0" prefWidth="600.0"
-            style="-fx-background-color: white;" styleClass="container" xmlns="http://javafx.com/javafx/11.0.2"
-            xmlns:fx="http://javafx.com/fxml/1" fx:controller="br.scadiagro.cadastro.controllers.cltrCadasFuncionario">
+<?import javafx.scene.text.*?>
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0"
+            prefWidth="600.0" style="-fx-background-color: gray-red;" xmlns="http://javafx.com/javafx/11.0.2"
+            xmlns:fx="http://javafx.com/fxml/1" fx:controller="br.scadiagro.cadastro.controllers.ctrlCadasFuncionario">
     <children>
-        <Pane layoutX="74.0" layoutY="19.0" opacity="0.76" prefHeight="347.0" prefWidth="450.0"
-              AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0"
-              AnchorPane.topAnchor="0.0">
+        <Pane prefHeight="200.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0"
+              AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
             <children>
-                <VBox layoutX="87.0" layoutY="66.0" prefHeight="200.0" prefWidth="455.0"
-                      style="-fx-border-color: black;">
+                <VBox cache="true" cacheHint="QUALITY" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0"
+                      prefWidth="600.0">
                     <children>
-                        <Label fx:id="sLblNome" text="Nome"/>
-                        <TextField fx:id="sTxtNome" minWidth="-Infinity"/>
-                        <Label fx:id="slblSalario" layoutX="10.0" layoutY="10.0" text="Salário">
-                            <VBox.margin>
-                                <Insets top="10.0"/>
-                            </VBox.margin>
-                        </Label>
-                        <TextField fx:id="nTxtSalario" alignment="CENTER" layoutX="10.0" layoutY="27.0"
-                                   maxWidth="-Infinity" prefHeight="20.0" prefWidth="100.0"/>
-                        <Label fx:id="sLblData" text="Data">
-                            <VBox.margin>
-                                <Insets top="10.0"/>
-                            </VBox.margin>
-                        </Label>
-                        <DatePicker fx:id="dData"/>
-                        <HBox prefHeight="100.0" prefWidth="200.0" style="-fx-spacing: space-between;"
-                              styleClass="HBoxButton">
+                        <HBox fx:id="HBoxCadastro" prefHeight="100.0" prefWidth="200.0">
                             <children>
-                                <Button fx:id="btnCadastra" contentDisplay="CENTER" mnemonicParsing="false"
+                                <Label alignment="CENTER" contentDisplay="CENTER" maxHeight="-Infinity"
+                                       maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity"
+                                       text="Cadastro de funcionário" textAlignment="JUSTIFY">
+                                    <HBox.margin>
+                                        <Insets top="20.0"/>
+                                    </HBox.margin>
+                                    <font>
+                                        <Font name="System Bold" size="24.0"/>
+                                    </font>
+                                </Label>
+                            </children>
+                            <VBox.margin>
+                                <Insets left="-20.0"/>
+                            </VBox.margin>
+                        </HBox>
+                        <Separator prefHeight="5.0" prefWidth="404.0">
+                            <padding>
+                                <Insets left="-200.0"/>
+                            </padding>
+                            <VBox.margin>
+                                <Insets bottom="10.0"/>
+                            </VBox.margin>
+                        </Separator>
+                        <Label text="Código">
+                            <font>
+                                <Font name="Arial Bold" size="14.0"/>
+                            </font>
+                        </Label>
+                        <TextField fx:id="lTxtCodigo" disable="true" editable="false" maxHeight="-Infinity"
+                                   maxWidth="-Infinity" mouseTransparent="true" pickOnBounds="false" prefHeight="25.0"
+                                   prefWidth="120.0">
+                            <cursor>
+                                <Cursor fx:constant="CLOSED_HAND"/>
+                            </cursor>
+                            <font>
+                                <Font name="Arial Bold" size="12.0"/>
+                            </font>
+                        </TextField>
+                        <Label layoutX="10.0" layoutY="110.0" text="Nome">
+                            <VBox.margin>
+                                <Insets top="10.0"/>
+                            </VBox.margin>
+                            <font>
+                                <Font name="Arial Bold" size="14.0"/>
+                            </font>
+                        </Label>
+                        <TextField fx:id="sTxtNome" layoutX="210.0" layoutY="141.0" maxWidth="-Infinity"
+                                   onAction="#PreencherCampoCodigo" prefHeight="25.0" prefWidth="280.0"/>
+                        <Label layoutX="10.0" layoutY="164.0" text="Salário">
+                            <VBox.margin>
+                                <Insets top="10.0"/>
+                            </VBox.margin>
+                            <font>
+                                <Font name="Arial Bold" size="14.0"/>
+                            </font>
+                        </Label>
+                        <TextField fx:id="nTxtSalario" layoutX="210.0" layoutY="192.0" maxWidth="-Infinity"
+                                   minWidth="-Infinity" prefHeight="25.0" prefWidth="120.0"/>
+                        <Label layoutX="10.0" layoutY="219.0" text="Data" wrapText="true">
+                            <VBox.margin>
+                                <Insets top="10.0"/>
+                            </VBox.margin>
+                            <font>
+                                <Font name="Arial Bold" size="14.0"/>
+                            </font>
+                        </Label>
+                        <DatePicker fx:id="dpData" accessibleRole="TEXT_FIELD"/>
+                        <HBox maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="50.0" prefWidth="507.0">
+                            <children>
+                                <Button fx:id="btnCadastrar" mnemonicParsing="false" onAction="#BtnCadastrar"
                                         text="Cadastrar">
                                     <HBox.margin>
                                         <Insets right="10.0"/>
                                     </HBox.margin>
+                                    <font>
+                                        <Font name="Arial Bold" size="14.0"/>
+                                    </font>
                                 </Button>
-                                <Button fx:id="btnFechar" contentDisplay="CENTER" mnemonicParsing="false"
-                                        nodeOrientation="LEFT_TO_RIGHT" style="-fx-content-display: flex;"
-                                        text="Fechar">
+                                <Button fx:id="btnFechar" layoutX="10.0" layoutY="10.0" mnemonicParsing="false"
+                                        onAction="#BtnFechar" text="Fechar">
                                     <HBox.margin>
                                         <Insets left="10.0"/>
                                     </HBox.margin>
+                                    <font>
+                                        <Font name="Arial Bold" size="14.0"/>
+                                    </font>
                                 </Button>
                             </children>
                             <VBox.margin>
@@ -53,15 +111,9 @@
                         </HBox>
                     </children>
                     <padding>
-                        <Insets left="50.0"/>
+                        <Insets left="200.0"/>
                     </padding>
                 </VBox>
-                <Label contentDisplay="CENTER" layoutX="171.0" layoutY="14.0" text="Cadastro de Funcionário"
-                       textAlignment="JUSTIFY" textOverrun="CENTER_ELLIPSIS">
-                    <font>
-                        <Font size="24.0"/>
-                    </font>
-                </Label>
             </children>
         </Pane>
     </children>

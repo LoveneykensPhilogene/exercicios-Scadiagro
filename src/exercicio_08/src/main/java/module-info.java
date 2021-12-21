@@ -13,6 +13,13 @@ module br.scadiagro.cadastro {
     opens br.scadiagro.cadastro to javafx.fxml;
     exports br.scadiagro.cadastro;
     exports br.scadiagro.cadastro.controllers;
+    exports br.scadiagro.cadastro.model;
+    exports br.scadiagro.cadastro.config;
+
+    opens br.scadiagro.cadastro.model to java.base;
+
+    opens br.scadiagro.cadastro.controllers to javafx.fxml;
+
 
 
 }

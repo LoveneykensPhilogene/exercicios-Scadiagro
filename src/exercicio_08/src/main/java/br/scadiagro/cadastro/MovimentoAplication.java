@@ -1,6 +1,5 @@
 package br.scadiagro.cadastro;
 
-import br.scadiagro.cadastro.controllers.cltrMovimentoFuncionario;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -8,7 +7,6 @@ import javafx.scene.Scene;
 import javafx.stage.Stage;
 
 import java.io.IOException;
-import java.util.ResourceBundle;
 
 public class MovimentoAplication extends Application {
 
@@ -26,7 +24,7 @@ public class MovimentoAplication extends Application {
         Parent root = FXMLLoader.load(getClass().getResource("view/dsListaFuncionario.fxml"));
         scene=new Scene(root);
         stage.setScene(scene);
-        stage.setTitle("Lista de funcionarios");
+        stage.setTitle("Visao geral");
         stage.show();
 
     }
