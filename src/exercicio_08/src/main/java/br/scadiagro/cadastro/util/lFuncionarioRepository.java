@@ -5,6 +5,7 @@ import br.scadiagro.cadastro.model.Funcionario;
 
 import java.io.*;
 import java.math.BigDecimal;
+import java.math.RoundingMode;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
@@ -25,7 +26,7 @@ public class lFuncionarioRepository implements IFuncionario {
     private List<Funcionario> listaPorNome = new ArrayList<>();
     private List<Funcionario> listaPorCodigo = new ArrayList<>();
     private final String sArquivoFuncionario = "db//Funcionario.dat";
-    private final String sArquivoOrdenadoPorNome = "db//dbfuncionario_idx02.idx";
+    private final String sArquivoOrdenadoPorNome = "db//funcionario_idx02.idx";
     private final String sArquivoOrdenadoPorCodigo = "db//funcionario_idx01.idx";
 
     public lFuncionarioRepository() {
@@ -69,7 +70,7 @@ public class lFuncionarioRepository implements IFuncionario {
             for (Funcionario ofun : oListFuncionario) {
                 setoFuncionario(ofun);
                 String sCodigo = this.oFormat.formatarCodigoDoFuncionario(getoFuncionario().getnCodFuncionario().intValue(), 6);
-                String sNome = this.oFormat.formatarNomeDoFuncionario(getoFuncionario().getsNome(), 100);
+                String sNome = this.oFormat.formatarNomeDoFuncionario(getoFuncionario().getsNome().toUpperCase(), 100);
                 String sSalario = this.oFormat.formatarSalario(getoFuncionario().getnSalario().toString(), 13);
                 buffWriter.write(sCodigo + getSeparator() + sNome + sSalario + getSeparator() + getoFuncionario().getdData());
 
@@ -242,6 +243,38 @@ public class lFuncionarioRepository implements IFuncionario {
 
     }
 
+    @Override
+    public void CriarArquivo(String sPath, String sArquivo) {
+
+    }
+
+    @Override
+    public BigDecimal BuscarSomaDeTOdosSalarios(String sCaminho) throws Exception {
+        List<Funcionario> listFuncDOCaminho = BuscarTodosOsFuncionarios("", sCaminho);
+        BigDecimal nSoma = new BigDecimal(0d);
+
+        for (Funcionario oFunDoCaminho : listFuncDOCaminho) {
+            nSoma = nSoma.add(oFunDoCaminho.getnSalario());
+        }
+        return nSoma;
+    }
+
+    @Override
+    public BigDecimal BuscarMediaSalarios(String sCaminho) throws Exception {
+        List<Funcionario> listFuncDOCaminho = BuscarTodosOsFuncionarios("", sCaminho);
+        BigDecimal nSomaSalario = BuscarSomaDeTOdosSalarios(sCaminho);
+        int nValorFormatado = Integer.parseInt(String.valueOf(nSomaSalario.intValue()));
+        BigDecimal nMedia = new BigDecimal(nValorFormatado / listFuncDOCaminho.size()).setScale(2, RoundingMode.DOWN);
+
+        return nMedia;
+    }
+
+    @Override
+    public void ExcTodosFuncionarios(String sArquivo) throws Exception {
+      File oFile=new File(sArquivo);
+      oFile.delete();
+    }
+
     public String getsArquivoFuncionario() {
         return sArquivoFuncionario;
     }
@@ -252,11 +285,6 @@ public class lFuncionarioRepository implements IFuncionario {
 
     public String getsArquivoOrdenadoPorCodigo() {
         return sArquivoOrdenadoPorCodigo;
-    }
-
-    @Override
-    public void CriarArquivo(String sPath, String sArquivo) {
-
     }
 
     public String getsPath() {

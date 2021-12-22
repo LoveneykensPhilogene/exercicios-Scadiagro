@@ -12,7 +12,6 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
-import javafx.scene.control.MenuItem;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.stage.Stage;
@@ -136,7 +135,7 @@ public class ctrlMovimentoFuncionario implements Initializable {
     @FXML
     public void MenorSalario(ActionEvent actionEvent) {
         lFuncionarioRepository oRepository = new lFuncionarioRepository();
-        Funcionario oFuncionario=oRepository.BuscarFuncionarioCOmMenorSalario(oRepository.getsArquivoFuncionario());
+        Funcionario oFuncionario = oRepository.BuscarFuncionarioCOmMenorSalario(oRepository.getsArquivoFuncionario());
         todosFuncionario.clear();
 
         tbColunaCodigo.setCellValueFactory(cod -> new SimpleObjectProperty<>(cod.getValue().getnCodFuncionario()));
@@ -151,7 +150,7 @@ public class ctrlMovimentoFuncionario implements Initializable {
     @FXML
     public void MaiorSalario(ActionEvent actionEvent) {
         lFuncionarioRepository oRepository = new lFuncionarioRepository();
-        Funcionario oFuncionario=oRepository.BuscarFuncionarioCOmMaiorSalario(oRepository.getsArquivoFuncionario());
+        Funcionario oFuncionario = oRepository.BuscarFuncionarioCOmMaiorSalario(oRepository.getsArquivoFuncionario());
         todosFuncionario.clear();
 
         tbColunaCodigo.setCellValueFactory(cod -> new SimpleObjectProperty<>(cod.getValue().getnCodFuncionario()));
@@ -165,9 +164,14 @@ public class ctrlMovimentoFuncionario implements Initializable {
 
     @FXML
     public void MostrarTelaDeControle(ActionEvent event) throws IOException {
-        ControleApplication oAppControle=new ControleApplication();
+        ControleApplication oAppControle = new ControleApplication();
         oAppControle.start(new Stage());
         oAppControle.stage.show();
+    }
+
+    @FXML
+    public void BtnEcluirTodos(ActionEvent actionEvent) throws Exception {
+
     }
 
 

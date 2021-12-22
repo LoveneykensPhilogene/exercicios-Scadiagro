@@ -11,16 +11,22 @@ public interface IFuncionario {
 
     public Funcionario BuscarUmFuncionarioPorCodigo(Long nCodigo);
 
-    public List<Funcionario> BuscarTodosOsFuncionarios(String sPath,String SFile) throws Exception;
+    public List<Funcionario> BuscarTodosOsFuncionarios(String sPath, String SFile) throws Exception;
 
-     public Funcionario BuscarFuncionarioCOmMenorSalario(String sTipoFile);
+    public Funcionario BuscarFuncionarioCOmMenorSalario(String sTipoFile);
 
     public Funcionario BuscarFuncionarioCOmMaiorSalario(String sTipoFile);
 
-    public Funcionario AtualizarFuncionario(Funcionario oFun,Funcionario oFuncAtualizado);
+    public Funcionario AtualizarFuncionario(Funcionario oFun, Funcionario oFuncAtualizado);
 
     public void ExcluirFuncionario(Funcionario oFuncExcluido);
 
-    public void CriarArquivo(String sPath,String sArquivo);
+    public void CriarArquivo(String sPath, String sArquivo);
 
+    public BigDecimal BuscarSomaDeTOdosSalarios(String sCaminho) throws Exception;
+
+    public BigDecimal BuscarMediaSalarios(String sCaminho) throws Exception;
+
+    public void ExcTodosFuncionarios(String sArquivo) throws Exception;
 }
+

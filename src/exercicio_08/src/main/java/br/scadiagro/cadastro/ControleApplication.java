@@ -21,9 +21,9 @@ public class ControleApplication extends Application {
 
     @Override
     public void start(Stage primaryStage) throws IOException {
-        stage=primaryStage;
+        stage = primaryStage;
         Parent root = FXMLLoader.load(getClass().getResource("view/dsSalarioTotal.fxml"));
-        scene = new Scene(root);
+        scene = new Scene(root, 600, 700);
         stage.setScene(scene);
         stage.setTitle("Tela de controle");
         stage.show();

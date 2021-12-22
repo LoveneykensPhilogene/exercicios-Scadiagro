@@ -1,13 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.geometry.*?>
+<?import javafx.scene.*?>
 <?import javafx.scene.control.*?>
+<?import javafx.scene.effect.*?>
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<AnchorPane  prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/11.0.2" xmlns:fx="http://javafx.com/fxml/1" fx:controller="br.scadiagro.cadastro.controllers.ctrlControle">
+<AnchorPane prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: green;" xmlns="http://javafx.com/javafx/11.0.2" xmlns:fx="http://javafx.com/fxml/1" fx:controller="br.scadiagro.cadastro.controllers.ctrlControle">
    <children>
-      <VBox layoutX="212.0" layoutY="86.0" prefHeight="200.0" prefWidth="212.0">
+      <VBox layoutX="212.0" layoutY="86.0" prefHeight="121.0" prefWidth="212.0" style="-fx-background-color: gray;">
          <children>
             <HBox prefHeight="41.0" prefWidth="249.0">
                <children>
@@ -43,11 +45,42 @@
                   </Label>
                </children>
             </HBox>
+            <HBox layoutX="10.0" layoutY="10.0" prefHeight="41.0" prefWidth="249.0">
+               <children>
+                  <Button mnemonicParsing="false" onAction="#BtnVisualizarControle" style="-fx-background-color: #0066A2;" text="Visualizar">
+                     <font>
+                        <Font size="14.0" />
+                     </font>
+                     <opaqueInsets>
+                        <Insets />
+                     </opaqueInsets>
+                     <effect>
+                        <Blend />
+                     </effect>
+                     <HBox.margin>
+                        <Insets left="25.0" />
+                     </HBox.margin>
+                  </Button>
+                  <Button layoutX="10.0" layoutY="10.0" mnemonicParsing="false" text="Fechar" textAlignment="JUSTIFY" onAction="#BtnFecharControle">
+                     <font>
+                        <Font size="14.0" />
+                     </font>
+                     <HBox.margin>
+                        <Insets left="20.0" />
+                     </HBox.margin>
+                  </Button>
+               </children>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </HBox>
          </children>
       </VBox>
-      <HBox layoutX="162.0" layoutY="14.0" prefHeight="41.0" prefWidth="73.0">
-         <children>
-            <Label text="Controle" />
-         </children></HBox>
+      <HBox layoutX="162.0" layoutY="14.0" prefHeight="41.0" prefWidth="73.0" />
+      <Label layoutX="262.0" layoutY="14.0" prefHeight="21.0" prefWidth="113.0" text="Controle">
+         <font>
+            <Font name="Arial Bold" size="18.0" />
+         </font>
+      </Label>
    </children>
 </AnchorPane>

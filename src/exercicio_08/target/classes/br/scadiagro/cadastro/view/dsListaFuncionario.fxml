@@ -28,7 +28,7 @@
                                 <MenuItem mnemonicParsing="false" text="Funcionario" />
                             </items>
                         </MenuButton>
-                        <MenuButton layoutX="-9.0" layoutY="95.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="142.0" text="Exlcluir">
+                        <MenuButton layoutX="-9.0" layoutY="95.0" mnemonicParsing="false" onAction="#BtnEcluirTodos" prefHeight="25.0" prefWidth="142.0" text="Exlcluir">
                             <items>
                                 <MenuItem mnemonicParsing="false" text="Excluir funcionario" />
                                 <MenuItem mnemonicParsing="false" text="Excluir todos" />

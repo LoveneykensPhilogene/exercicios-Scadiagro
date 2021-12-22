@@ -4,23 +4,20 @@ import br.scadiagro.cadastro.CadastroApplication;
 import br.scadiagro.cadastro.MovimentoAplication;
 import br.scadiagro.cadastro.model.Funcionario;
 import br.scadiagro.cadastro.util.lFuncionarioRepository;
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.control.*;
+import javafx.scene.control.Alert;
+import javafx.scene.control.DatePicker;
+import javafx.scene.control.TextField;
 import javafx.stage.Stage;
-import org.controlsfx.control.textfield.CustomTextField;
 
 import java.io.IOException;
 import java.math.BigDecimal;
 import java.net.URL;
 import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Random;
 import java.util.ResourceBundle;
 
 public class ctrlCadasFuncionario implements Initializable {
@@ -43,8 +40,6 @@ public class ctrlCadasFuncionario implements Initializable {
 
     private boolean isEmpty;
 
-    int pos = 0;
-
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         PreencherCampoCodigo();
@@ -52,24 +47,27 @@ public class ctrlCadasFuncionario implements Initializable {
 
     @FXML
     public void BtnCadastrar(ActionEvent event) throws Exception {
-      /*  event.hashCode();
-        if (!((event.hashCode()) != event.hashCode())) {
-            ++pos;
-        }
-*/
-        VerificarCamposVazias();
+
+        VerificarCamposVazios();
         Funcionario oFuncionario = new Funcionario();
         dPData = new DatePicker();
+        lFuncionarioRepository oRepository = new lFuncionarioRepository();
+        todosFuncionario = oRepository.BuscarTodosOsFuncionarios("", oRepository.getsArquivoFuncionario());
+
         oFuncionario.setnCodFuncionario(Long.parseLong(lTxtCodigo.getText()));
-        oFuncionario.setsNome(sTxtNome.getText());
+        oFuncionario.setsNome(sTxtNome.getText().toUpperCase());
         oFuncionario.setnSalario(new BigDecimal(nTxtSalario.getText()));
         oFuncionario.setdData(LocalDate.now());
+        if (todosFuncionario.contains(oFuncionario.getnCodFuncionario()) == true) {
+            oFuncionario.setnCodFuncionario(Long.parseLong(String.valueOf((int) Math.random() * 100000)));
+        }
         todosFuncionario.add(oFuncionario);
         oLFuncionario = new lFuncionarioRepository();
         oLFuncionario.CadastrarFuncionario(todosFuncionario);
+
         LimparCampos();
         PreencherCampoCodigo();
-        System.out.println(todosFuncionario);
+
     }
 
     @FXML
@@ -83,9 +81,9 @@ public class ctrlCadasFuncionario implements Initializable {
 
     @FXML
     public void PreencherCampoCodigo() {
-        Random r = new Random();
-        Long c = Long.valueOf((int) (Math.random() * 100000));
-        lTxtCodigo.setText(String.valueOf(c));
+
+        Long nValorRandom = Long.valueOf((int) (Math.random() * 100000));
+        lTxtCodigo.setText(String.valueOf(nValorRandom));
     }
 
     public void LimparCampos() {
@@ -96,20 +94,22 @@ public class ctrlCadasFuncionario implements Initializable {
         dPData.setPromptText("");
     }
 
-    public void VerificarCamposVazias() {
+    public void VerificarCamposVazios() {
         if (sTxtNome.getText().equals("")) {
+            sTxtNome.setText(null);
             Alert alert = new Alert(Alert.AlertType.INFORMATION);
             alert.setTitle("Erro!");
             alert.setHeaderText("Campo não preenchido");
             setEmpty(true);
             alert.show();
-        }
-        if (nTxtSalario.getText().equals("")) {
+        } else if (nTxtSalario.getText().equals("")) {
             Alert alert = new Alert(Alert.AlertType.INFORMATION);
             alert.setTitle("Erro!");
             alert.setHeaderText("Campo não preenchido");
             setEmpty(true);
             alert.show();
+        } else {
+
         }
     }
 

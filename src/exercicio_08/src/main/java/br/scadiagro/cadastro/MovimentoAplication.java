@@ -19,10 +19,10 @@ public class MovimentoAplication extends Application {
 
     @Override
     public void start(Stage primayStage) throws IOException {
-        stage=primayStage;
+        stage = primayStage;
 
         Parent root = FXMLLoader.load(getClass().getResource("view/dsListaFuncionario.fxml"));
-        scene=new Scene(root);
+        scene = new Scene(root, 600, 400);
         stage.setScene(scene);
         stage.setTitle("Visao geral");
         stage.show();

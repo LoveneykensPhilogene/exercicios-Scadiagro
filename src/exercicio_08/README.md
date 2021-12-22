@@ -5,12 +5,12 @@
 </header>
 <div>
 <h2>Tela de cadastro</h2>
-<img src="assets/cadastro.PNG" alt="">
+<img src="assets/cadastro.jpeg" alt="">
 </div>
-<div></div>
+
 <div>
 <h2>Visão geral</h2>
-<img src="assets/visao-geral.PNG" alt="">
+<img src="assets/visao-visao-geral.jpeg" alt="">
 </div>
 <hr/>
 <h1>Em desenvolvimento.................<h1>
