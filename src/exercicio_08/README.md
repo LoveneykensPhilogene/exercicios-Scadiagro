@@ -10,7 +10,7 @@
 
 <div>
 <h2>Visão geral</h2>
-<img src="assets/visao-visao-geral.jpeg" alt="">
+<img src="assets/visao-geral.jpeg" alt="">
 </div>
 <hr/>
 <h1>Em desenvolvimento.................<h1>
