@@ -57,7 +57,7 @@ public class lFuncionarioRepository implements IFuncionario {
             listFucionario.addAll(oListFuncionario);
             setSeparator(" ".repeat(4));
             setSeparatorData(getSeparator().repeat(3));
-            gravarDadosOrdenadosPorCodigo(oListFuncionario);
+            GravarDadosOrdenadosPorCodigo(oListFuncionario);
             gravarDadosOrdenadosPorNome(oListFuncionario);
 
             setsFile(sArquivoFuncionario);
@@ -77,10 +77,21 @@ public class lFuncionarioRepository implements IFuncionario {
                 buffWriter.newLine();
             }
             buffWriter.close();
-            System.out.println(listFucionario);
 
         } else {
-            System.out.println("não");
+            listFucionario = new ArrayList<>();
+            listFucionario.addAll(oListFuncionario);
+            setSeparator(" ".repeat(4));
+            setSeparatorData(getSeparator().repeat(3));
+            GravarDadosOrdenadosPorCodigo(oListFuncionario);
+            gravarDadosOrdenadosPorNome(oListFuncionario);
+
+            setsFile(sArquivoFuncionario);
+            setsPath(getsFile());
+            this.buffWriter = new BufferedWriter(new FileWriter(getsPath()));
+            this.oFormat = new lFormat();
+            buffWriter.write("Código" + getSeparator() + oFormat.formatarNomeDoFuncionario("Nome", 100) + "Salário" + getSeparatorData() + "Data");
+            buffWriter.newLine();
             throw new NullPointerException("Não existe");
         }
 
@@ -110,7 +121,7 @@ public class lFuncionarioRepository implements IFuncionario {
 
     }
 
-    public void gravarDadosOrdenadosPorCodigo(List<Funcionario> dadosDosFuncionarios) throws IOException {
+    public void GravarDadosOrdenadosPorCodigo(List<Funcionario> dadosDosFuncionarios) throws IOException {
         this.oFormat = new lFormat();
         buffWriter = new BufferedWriter(new FileWriter(sArquivoOrdenadoPorCodigo));
 
@@ -135,7 +146,8 @@ public class lFuncionarioRepository implements IFuncionario {
     }
 
     @Override
-    public Funcionario BuscarUmFuncionarioPorCodigo(Long nCodigo) {
+    public Funcionario BuscarUmFuncionarioPorCodigo(Long nCodigo) throws Exception {
+        this.listFucionario = BuscarTodosOsFuncionarios("", getsArquivoFuncionario());
         for (Funcionario oFuncionario : getListFucionario()) {
             if (oFuncionario.getnCodFuncionario().equals(nCodigo)) {
                 return oFuncionario;
@@ -178,7 +190,7 @@ public class lFuncionarioRepository implements IFuncionario {
     @Override
     public Funcionario BuscarFuncionarioCOmMenorSalario(String sTipoFile) {
         try {
-            this.listFucionario.addAll(BuscarTodosOsFuncionarios("", sTipoFile));
+            this.listFucionario = BuscarTodosOsFuncionarios("", sTipoFile);
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -198,7 +210,7 @@ public class lFuncionarioRepository implements IFuncionario {
     @Override
     public Funcionario BuscarFuncionarioCOmMaiorSalario(String sTipo) {
         try {
-            this.listFucionario.addAll(BuscarTodosOsFuncionarios("", sTipo));
+            this.listFucionario = BuscarTodosOsFuncionarios("", sTipo);
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -216,7 +228,12 @@ public class lFuncionarioRepository implements IFuncionario {
     }
 
     @Override
-    public Funcionario AtualizarFuncionario(Funcionario oFunc, Funcionario oFuncAtualizado) {
+    public Funcionario AtualizarFuncionario(Funcionario oFunc, Funcionario oFuncAtualizado) throws Exception {
+        try {
+            this.listFucionario.addAll(BuscarTodosOsFuncionarios("", getsArquivoFuncionario()));
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
         for (Funcionario oFun : getListFucionario()) {
             int indiceFunc = getListFucionario().indexOf(oFun);
 
@@ -230,21 +247,39 @@ public class lFuncionarioRepository implements IFuncionario {
                 oFuncAtualizado = oFun;
             }
         }
+        CadastrarFuncionario(getListFucionario());
+
         return oFuncAtualizado;
     }
 
     @Override
-    public void ExcluirFuncionario(Funcionario oFuncExcluido) {
-        for (Funcionario oFuncionario : getListFucionario()) {
-            if (oFuncionario.equals(oFuncExcluido)) {
-                getListFucionario().remove(oFuncionario);
-            }
-        }
+    public void ExcluirFuncionario(Funcionario oFuncExcluido) throws Exception {
 
+        List<Funcionario> oListFuncionarios = BuscarTodosOsFuncionarios("", getsArquivoFuncionario());
+        List<Funcionario> listFuncionarioIgual = oListFuncionarios.stream().map(func -> func).filter(fun -> fun.equals(oFuncExcluido)).toList();
+        this.listFucionario.removeAll(listFuncionarioIgual);
+        CadastrarFuncionario(getListFucionario());
     }
 
     @Override
-    public void CriarArquivo(String sPath, String sArquivo) {
+    public void CriarArquivo(String sPath, String sArquivo, Funcionario oFuncionario) throws IOException {
+        this.oFormat = new lFormat();
+        setSeparator(" ".repeat(4));
+        setSeparatorData(getSeparator().repeat(3));
+
+        String sCodigo = oFormat.formatarCodigoDoFuncionario(oFuncionario.getnCodFuncionario().intValue(), 6);
+        String sNome = oFormat.formatarNomeDoFuncionario(oFuncionario.getsNome(), 100);
+        String sSalario = oFormat.formatarSalario(oFuncionario.getnSalario().toString(), 13);
+        LocalDate sData = oFuncionario.getdData();
+
+        buffWriter = new BufferedWriter(new FileWriter(sArquivo));
+
+        buffWriter.write("Código" + getSeparator() + oFormat.formatarNomeDoFuncionario("Nome", 100) + "Salario" + getSeparatorData() + "Data");
+
+        buffWriter.newLine();
+
+        buffWriter.write(sCodigo + getSeparator() + sNome + sSalario + getSeparator() + sData);
+        buffWriter.close();
 
     }
 
@@ -271,8 +306,8 @@ public class lFuncionarioRepository implements IFuncionario {
 
     @Override
     public void ExcTodosFuncionarios(String sArquivo) throws Exception {
-      File oFile=new File(sArquivo);
-      oFile.delete();
+        this.listFucionario = new ArrayList<>();
+        CadastrarFuncionario(getListFucionario());
     }
 
     public String getsArquivoFuncionario() {
