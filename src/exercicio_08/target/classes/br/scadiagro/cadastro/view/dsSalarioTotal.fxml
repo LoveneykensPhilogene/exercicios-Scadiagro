@@ -7,7 +7,7 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<AnchorPane prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: green;" xmlns="http://javafx.com/javafx/11.0.2" xmlns:fx="http://javafx.com/fxml/1" fx:controller="br.scadiagro.cadastro.controllers.ctrlControle">
+<fx:root fx:id="root" type="AnchorPane" prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: green;" xmlns="http://javafx.com/javafx/11.0.2" xmlns:fx="http://javafx.com/fxml/1" >
    <children>
       <VBox layoutX="212.0" layoutY="86.0" prefHeight="121.0" prefWidth="212.0" style="-fx-background-color: gray;">
          <children>
@@ -17,6 +17,9 @@
                      <font>
                         <Font size="14.0" />
                      </font>
+                     <HBox.margin>
+                        <Insets />
+                     </HBox.margin>
                   </Label>
                   <Label fx:id="lblValorTotal" layoutX="10.0" layoutY="10.0">
                      <font>
@@ -30,7 +33,7 @@
             </HBox>
             <HBox layoutX="10.0" layoutY="10.0" prefHeight="41.0" prefWidth="200.0">
                <children>
-                  <Label text="Salário Total ">
+                  <Label text="Salário Médio">
                      <font>
                         <Font size="14.0" />
                      </font>
@@ -49,7 +52,7 @@
                <children>
                   <Button mnemonicParsing="false" onAction="#BtnVisualizarControle" style="-fx-background-color: #0066A2;" text="Visualizar">
                      <font>
-                        <Font size="14.0" />
+                        <Font name="Arial Bold" size="14.0" />
                      </font>
                      <opaqueInsets>
                         <Insets />
@@ -61,9 +64,9 @@
                         <Insets left="25.0" />
                      </HBox.margin>
                   </Button>
-                  <Button layoutX="10.0" layoutY="10.0" mnemonicParsing="false" text="Fechar" textAlignment="JUSTIFY" onAction="#BtnFecharControle">
+                  <Button layoutX="10.0" layoutY="10.0" mnemonicParsing="false" onAction="#BtnFecharControle" text="Fechar" textAlignment="JUSTIFY">
                      <font>
-                        <Font size="14.0" />
+                        <Font name="Arial Bold" size="14.0" />
                      </font>
                      <HBox.margin>
                         <Insets left="20.0" />
@@ -83,4 +86,4 @@
          </font>
       </Label>
    </children>
-</AnchorPane>
+</fx:root>
