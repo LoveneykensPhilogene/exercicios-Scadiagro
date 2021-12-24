@@ -20,6 +20,4 @@ module br.scadiagro.cadastro {
 
     opens br.scadiagro.cadastro.controllers to javafx.fxml;
 
-
-
 }
