@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.text.Font?>
+
+<fx:root fx:id="root" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="40.0" prefWidth="500.0" style="-fx-background-radius: 15; -fx-background-color: green;" type="AnchorPane" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <HBox fx:id="hBoxDadosFuncionario" layoutY="-116.0" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="156.0" prefWidth="510.0" style="-fx-background-color: green; -fx-border-color: black; -fx-background-radius: 15;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="-10.0" AnchorPane.topAnchor="0.0">
+         <children>
+            <Label fx:id="lblCodigo" text="Código">
+               <HBox.margin>
+                  <Insets left="5.0" top="5.0" />
+               </HBox.margin>
+               <font>
+                  <Font name="Arial Bold" size="14.0" />
+               </font>
+               <opaqueInsets>
+                  <Insets />
+               </opaqueInsets>
+            </Label>
+            <TextField fx:id="nTxtCodigo" prefHeight="25.0" prefWidth="347.0" promptText="Buscar um funcionário" style="-fx-background-color: gray; -fx-background-radius: 10;">
+               <HBox.margin>
+                  <Insets left="5.0" />
+               </HBox.margin>
+               <font>
+                  <Font name="Arial" size="12.0" />
+               </font>
+            </TextField>
+            <Button fx:id="BtnBuscarUmFuncioanrio" mnemonicParsing="false" onAction="#BtnBuscarUmFuncionario" prefHeight="28.0" prefWidth="78.0" style="-fx-background-color: white; -fx-border-color: gray; -fx-border-radius: 10;" text="Buscar">
+               <HBox.margin>
+                  <Insets left="10.0" />
+               </HBox.margin>
+               <font>
+                  <Font name="Arial Bold" size="14.0" />
+               </font>
+            </Button>
+         </children>
+         <padding>
+            <Insets top="5.0" />
+         </padding>
+      </HBox>
+   </children>
+
+</fx:root>
