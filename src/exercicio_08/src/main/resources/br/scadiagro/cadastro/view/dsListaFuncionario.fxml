@@ -1,11 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.geometry.*?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
-<?import javafx.scene.text.*?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.MenuButton?>
+<?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.control.SplitPane?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.ToolBar?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/11.0.2" xmlns:fx="http://javafx.com/fxml/1" fx:controller="br.scadiagro.cadastro.controllers.ctrlMovimentoFuncionario">
+<fx:root fx:id="root" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" type="AnchorPane" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1">
     <children>
         <SplitPane dividerPositions="0.22742474916387959" layoutY="58.0" prefHeight="242.0" prefWidth="600.0" AnchorPane.bottomAnchor="100.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="58.0">
             <items>
@@ -18,21 +25,28 @@
                             <items>
                                 <MenuItem fx:id="mItemCodigo" mnemonicParsing="false" onAction="#ListaOrdenadaPorCodigo" text="ListaOrCod" />
                                 <MenuItem fx:id="mItemNome" mnemonicParsing="false" onAction="#ListaOrdenadaPorNome" text="ListaOrNom" />
-                                <MenuItem mnemonicParsing="false" onAction="#MostrarTelaDeControle" text="SomaSalário" />
+                                <MenuItem mnemonicParsing="false" onAction="#MostrarTelaDeControle" text="Controle" />
                                 <MenuItem mnemonicParsing="false" onAction="#MenorSalario" text="MenorSalário" />
                                 <MenuItem mnemonicParsing="false" onAction="#MaiorSalario" text="MaiorSalário" />
+                        <MenuItem mnemonicParsing="false" onAction="#MenuBuscarFuncionario" text="Buscar" />
                             </items>
                         </MenuButton>
-                        <MenuButton layoutX="-4.0" layoutY="48.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="142.0" text="Alterar">
+                        <MenuButton fx:id="AnchrorPaneBar" layoutX="-4.0" layoutY="48.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="142.0" text="Alterar" AnchorPane.leftAnchor="-30.0" AnchorPane.rightAnchor="-20.0">
                             <items>
-                                <MenuItem mnemonicParsing="false" text="Funcionario" />
+                                <MenuItem fx:id="mnItemFuncionario" mnemonicParsing="false" onAction="#MenuAtualizarFuncionario" text="Funcionario" />
                             </items>
+                     <padding>
+                        <Insets left="10.0" />
+                     </padding>
                         </MenuButton>
-                        <MenuButton layoutX="-9.0" layoutY="95.0" mnemonicParsing="false" onAction="#BtnEcluirTodos" prefHeight="25.0" prefWidth="142.0" text="Exlcluir">
+                        <MenuButton layoutX="11.0" layoutY="95.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#BtnEcluirTodos" prefHeight="25.0" prefWidth="142.0" text="Exlcluir" AnchorPane.leftAnchor="-30.0" AnchorPane.rightAnchor="-20.0">
                             <items>
-                                <MenuItem mnemonicParsing="false" text="Excluir funcionario" />
-                                <MenuItem mnemonicParsing="false" text="Excluir todos" />
+                                <MenuItem mnemonicParsing="false" onAction="#BtnExcFuncionario" text="Excluir funcionario" />
+                                <MenuItem mnemonicParsing="false" onAction="#BtnEcluirTodos" text="Excluir todos" />
                             </items>
+                     <padding>
+                        <Insets left="10.0" />
+                     </padding>
                         </MenuButton>
                     </children>
                 </AnchorPane>
@@ -79,4 +93,4 @@
             </children>
         </HBox>
     </children>
-</AnchorPane>
+</fx:root>
